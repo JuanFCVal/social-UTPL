@@ -89,6 +89,7 @@ class _LoginForm extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               TextFormField(
+                obscureText: true,
                 controller: _passwordController,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -117,7 +118,7 @@ class _LoginForm extends StatelessWidget {
                     tempUser.usuario = _userController.text;
                     tempUser.contrasena = _passwordController.text;
                     if (await _login(tempUser, userProvider)) {
-                      Navigator.pushNamed(context, 'home');
+                      Navigator.pushNamed(context, 'home', arguments: tempUser);
                     } else {
                       Utilities.showGenericAlert(context, "Alerta",
                           "Usuario o contraseña incorrectos", true);
@@ -137,8 +138,6 @@ class _LoginForm extends StatelessWidget {
   }
 
   Future<bool> _login(UserModel tempUser, UserProvider userProvider) async {
-    print(tempUser.usuario);
-    print(tempUser.contrasena);
     final UserModel user = await userProvider.login(tempUser);
     if (user.idcuenta != null) {
       return true;

@@ -8,15 +8,18 @@ class UserModel {
   String? email;
   String? token;
   String? contrasena;
-  UserModel({
-    this.idcuenta,
-    this.nombre,
-    this.apellido,
-    this.usuario,
-    this.email,
-    this.token,
-    this.contrasena,
-  });
+  String? modalidad;
+  int? idCarrera;
+  UserModel(
+      {this.idcuenta,
+      this.nombre,
+      this.apellido,
+      this.usuario,
+      this.email,
+      this.token,
+      this.contrasena,
+      this.modalidad,
+      this.idCarrera});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     idcuenta = json['idcuenta'];
