@@ -2,11 +2,17 @@ class Carreras {
   List<Carrera> items = [];
   Carreras();
   Carreras.fromJsonList(List<dynamic> jsonList) {
-    if (jsonList == null) return;
     for (var item in jsonList) {
-      final categoria = new Carrera.fromJson(item);
-      items.add(categoria);
+      final career = Carrera.fromJson(item);
+      items.add(career);
     }
+  }
+
+  getNames() {
+    List names = [];
+    for (var item in items) names.add(item.nombre);
+    print(names);
+    return names;
   }
 }
 
@@ -18,6 +24,8 @@ class Carrera {
 
   int? idcarrera;
   String? nombre;
+
+  get Nombre => nombre;
 
   factory Carrera.fromJson(Map<String, dynamic> json) => Carrera(
         idcarrera: json["idcarrera"],

@@ -8,6 +8,7 @@ class UserProvider extends ChangeNotifier {
   bool _isLoading = false;
   late UserModel user = UserModel();
   late Carreras carreras = Carreras();
+
   final String api = "http://localhost:3000";
   UserProvider() {
     getCategory();
@@ -60,14 +61,18 @@ class UserProvider extends ChangeNotifier {
   }
 
   getCategory() async {
-    final url = Uri.parse(api + '/carreras');
-    final resp = await http.get(url);
-    final decodedData = json.decode(resp.body);
-    print(decodedData);
-    if (decodedData['status'] == '1') {
-      carreras = Carreras.fromJsonList(decodedData['data']);
-    } else {
-      carreras.items = [];
+    try {
+      final url = Uri.parse(api + '/carreras');
+      final resp = await http.get(url);
+      final decodedData = json.decode(resp.body);
+      print(decodedData);
+      if (decodedData['status'] == '1') {
+        carreras = Carreras.fromJsonList(decodedData['data']);
+      } else {
+        carreras.items = [];
+      }
+    } catch (e) {
+      debugPrint("Huno un error");
     }
   }
 }

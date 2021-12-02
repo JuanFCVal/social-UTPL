@@ -12,10 +12,24 @@ class AuthBackground extends StatelessWidget {
           Stack(
             children: [
               _UpSide(),
-              Padding(
-                  padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height * 0.1),
-                  child: topLogo())
+              Positioned(
+                  top: 0,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Row(
+                      children: [
+                        Container(height: 150, width: 100, child: topLogo()),
+                        SizedBox(width: 20),
+                        Text(
+                          "Social UTPL",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  )),
             ],
           ),
         ],
@@ -24,37 +38,8 @@ class AuthBackground extends StatelessWidget {
   }
 
   Widget topLogo() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        RichText(
-          text: const TextSpan(
-            text: 'Social-',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Courier'),
-            children: <TextSpan>[
-              TextSpan(
-                  text: 'UTPL',
-                  style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Roboto')),
-            ],
-          ),
-        )
-
-        // Text(
-        //   "Social",
-        //   style: TextStyle(
-        //       color: Colors.white,
-        //       fontSize: 30,
-        //       fontWeight: FontWeight.bold,
-        //       fontFamily: 'Courier'),
-        // ),
-      ],
+    return Image.asset(
+      'assets/resources/logo.png',
     );
   }
 }
