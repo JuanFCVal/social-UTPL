@@ -128,7 +128,8 @@ class _LoginForm extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, 'register');
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, 'register', (route) => false);
                 },
                 child: Text("Registrarse"),
               )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:social_utpl/src/providers/publications_provider.dart';
 import 'package:social_utpl/src/providers/user_provider.dart';
 import 'package:social_utpl/src/routes/routes.dart';
 
@@ -10,7 +11,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => new UserProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(
+          create: (_) => PublicationProvider(),
+          lazy: true,
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

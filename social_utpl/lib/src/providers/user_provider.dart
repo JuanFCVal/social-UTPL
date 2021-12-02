@@ -65,7 +65,6 @@ class UserProvider extends ChangeNotifier {
       final url = Uri.parse(api + '/carreras');
       final resp = await http.get(url);
       final decodedData = json.decode(resp.body);
-      print(decodedData);
       if (decodedData['status'] == '1') {
         carreras = Carreras.fromJsonList(decodedData['data']);
       } else {
